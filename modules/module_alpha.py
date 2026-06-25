@@ -1,27 +1,3 @@
-"""
-MODULE ALPHA — Consumer Log Handler
-=====================================
-Standardizes transaction receipt rows, invoice tables, and website order data.
-
-Responsibilities:
-  1. Load the raw UCI Online Retail dataset (Excel).
-  2. Clean and standardize it:
-       - Drop rows with missing CustomerID (can't attribute to a buyer).
-       - Drop rows with missing/blank Description.
-       - Remove cancelled orders (InvoiceNo starting with 'C').
-       - Remove non-positive Quantity or UnitPrice (returns / data errors).
-       - Strip whitespace from text fields, standardize Country/Description casing.
-       - De-duplicate exact duplicate rows.
-  3. Derive a TotalPrice column (Quantity * UnitPrice) for downstream modules.
-  4. Persist the cleaned table into SQLite (data/ecommerce.db) as `transactions`.
-  5. Log a before/after summary so data loss is auditable.
-
-This module is the single source of truth all other modules (Beta/Gamma/Delta)
-read from. Run it directly to (re)build the database:
-
-    python modules/module_alpha.py
-"""
-
 import sqlite3
 from pathlib import Path
 import pandas as pd
@@ -42,13 +18,6 @@ def load_raw_data(path: Path = RAW_DATA_PATH) -> pd.DataFrame:
 
 
 def clean_transactions(df: pd.DataFrame) -> tuple[pd.DataFrame, dict]:
-    """
-    Apply the full cleaning pipeline to the raw transaction log.
-
-    Returns the cleaned DataFrame plus a dict of audit stats describing
-    how many rows were removed at each step (useful for the dashboard's
-    data-quality panel and for debugging).
-    """
     stats = {"raw_rows": len(df)}
 
     # 1. Standardize column dtypes / strip whitespace on text columns
