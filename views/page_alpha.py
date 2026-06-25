@@ -1,8 +1,3 @@
-"""
-Module Alpha Page — Consumer Log Handler
-Shows the data cleaning pipeline's audit trail and raw transaction explorer.
-"""
-
 import streamlit as st
 
 from data_access import load_transactions
