@@ -1,23 +1,3 @@
-"""
-MODULE GAMMA — Product Purchase Analytics Module
-===================================================
-Tally order totals across the catalog to trace product performance trends.
-
-This module is intentionally lightweight: it does not write a new table to the
-database. Instead it exposes a set of parameterized SQL query functions that
-the dashboard calls directly against the `transactions` table built by
-Module Alpha. Product analytics are naturally "ad hoc" (top-N, date-filtered,
-country-filtered), so computing them on demand via SQL is more flexible than
-pre-materializing a fixed table.
-
-Functions:
-  - top_products_by_revenue(conn, n)
-  - top_products_by_quantity(conn, n)
-  - product_summary(conn)                 -> full catalog-level aggregation
-  - revenue_timeline(conn, freq)           -> revenue over time (for trend charts)
-  - product_detail(conn, stock_code)       -> drill-down for a single SKU
-"""
-
 import sqlite3
 import pandas as pd
 
@@ -75,15 +55,6 @@ def product_summary(conn: sqlite3.Connection) -> pd.DataFrame:
 
 
 def revenue_timeline(conn: sqlite3.Connection, freq: str = "D") -> pd.DataFrame:
-    """
-    Revenue and order volume over time, used for the Purchase Ingestion Timeline.
-    freq: 'D' (daily), 'W' (weekly), or 'M' (monthly) — resampled in pandas
-    since SQLite has no native date-bucketing for arbitrary frequencies.
-
-    Accepts the user-facing aliases D/W/M and maps them to whichever resample
-    alias the installed pandas version expects (pandas >= 2.2 renamed the
-    month-end alias from 'M' to 'ME').
-    """
     freq_map = {"D": "D", "W": "W", "M": "ME"}
     resample_freq = freq_map.get(freq, freq)
 
