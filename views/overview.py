@@ -12,6 +12,11 @@ from data_access import (
     load_rfm,
     load_revenue_timeline,
     load_revenue_by_country,
+    load_top_products_revenue,
+    load_top_products_quantity,
+    load_product_summary,
+    load_product_detail,
+from modules import module_alpha
 )
 
 
