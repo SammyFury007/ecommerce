@@ -81,7 +81,7 @@ def render() -> None:
         labels={"TotalRevenue": "Revenue (£)"},
 
     st.divider()
-
+    )
     # ---- Visualization View 1: Customer Segment Scatter Diagram -----------
     st.subheader("Customer Segment Scatter Diagram")
     st.caption("Recency vs. Monetary value, sized by Frequency, colored by segment")
@@ -127,7 +127,7 @@ def render() -> None:
     
     st.caption(f"{len(summary_view):,} products")
     st.dataframe(summary_view, use_container_width=True, height=350)
-    )
+    
     fig3.update_traces(texttemplate="£%{x:,.0f}", textposition="outside")
     fig3.update_layout(height=300, margin=dict(t=10, b=10, l=10, r=10), yaxis=dict(autorange="reversed"))
     st.plotly_chart(fig3, use_container_width=True)
