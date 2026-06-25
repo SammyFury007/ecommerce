@@ -10,7 +10,7 @@ an admin-only login.
 ## 1. Project Structure
 
 ```
-jitgo_retail_project/
+ecommerce/
 ├── app.py                      # Main entry point — login gate + sidebar nav
 ├── auth.py                     # Admin login logic (reads st.secrets)
 ├── data_access.py              # Cached data-loading layer for the dashboard
@@ -27,7 +27,7 @@ jitgo_retail_project/
 │   ├── module_beta.py          # RFM Segmentation Core
 │   ├── module_gamma.py         # Product Purchase Analytics
 │   └── module_delta.py         # Regional Revenue Mapping
-└── pages/
+└── views/
     ├── overview.py             # Home/KPI summary page
     ├── page_alpha.py           # Module Alpha dashboard view
     ├── page_beta.py            # Module Beta dashboard view (RFM scatter, etc.)
@@ -97,7 +97,7 @@ file and want to refresh the database without redeploying.
 
 ### Step 1 — Push to GitHub
 ```bash
-cd jitgo_retail_project
+cd ecommerce
 git init
 git add .
 git commit -m "Initial commit: e-commerce analytics dashboard"
