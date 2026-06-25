@@ -80,9 +80,10 @@ def render() -> None:
         orientation="h",
         text="TotalRevenue",
         labels={"TotalRevenue": "Revenue (£)"},
+    )
 
     st.divider()
-    )
+
     # ---- Visualization View 1: Customer Segment Scatter Diagram -----------
     st.subheader("Customer Segment Scatter Diagram")
     st.caption("Recency vs. Monetary value, sized by Frequency, colored by segment")
