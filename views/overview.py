@@ -16,8 +16,9 @@ from data_access import (
     load_top_products_quantity,
     load_product_summary,
     load_product_detail,
+    )
 from modules import module_alpha
-)
+
 
 
 def render() -> None:
