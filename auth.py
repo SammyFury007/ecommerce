@@ -40,7 +40,8 @@ def login_screen() -> None:
     st.markdown(
         """
         <div style="text-align:center; margin-top: 4rem;">
-            <h1>🔒 E-Commerce Analytics Dashboard</h1>
+            <h1>QubitEdge Kart</h1>
+            <h2>E-Commerce Analytics Dashboard</h2>
             <p style="color:#9CA3AF;">Admin access only. Please sign in to continue.</p>
         </div>
         """,
