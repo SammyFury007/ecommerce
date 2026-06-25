@@ -87,6 +87,12 @@ def render() -> None:
         text="TotalRevenue",
         labels={"TotalRevenue": "Revenue (£)"},
     )
+    fig3.update_traces(texttemplate="£%{x:,.0f}", textposition="outside")
+    fig3.update_layout(height=300, margin=dict(t=10, b=10, l=10, r=10), yaxis=dict(autorange="reversed"))
+    st.plotly_chart(fig3, use_container_width=True)
+
+    st.divider()
+    
     rfm = load_rfm()
     
     # ---- Segment KPI strip --------------------------------------------------
@@ -159,10 +165,6 @@ def render() -> None:
     
     st.caption(f"{len(summary_view):,} products")
     st.dataframe(summary_view, use_container_width=True, height=350)
-    
-    fig3.update_traces(texttemplate="£%{x:,.0f}", textposition="outside")
-    fig3.update_layout(height=300, margin=dict(t=10, b=10, l=10, r=10), yaxis=dict(autorange="reversed"))
-    st.plotly_chart(fig3, use_container_width=True)
 
     st.info(
         "Use the sidebar to dive into each module: **Alpha** (data quality), "
