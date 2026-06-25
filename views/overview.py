@@ -1,9 +1,3 @@
-"""
-Overview Page — high-level KPI summary across all four modules.
-Addresses Objective 1: a behavioral customer dashboard tracking
-historical buyer transaction histories at a glance.
-"""
-
 import streamlit as st
 import plotly.express as px
 
