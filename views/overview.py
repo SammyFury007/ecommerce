@@ -141,6 +141,9 @@ def render() -> None:
         y="Revenue",
         labels={"InvoiceDate": "Date", "Revenue": "Revenue (£)"},
     )
+    fig.update_layout(height=350, margin=dict(t=10, b=10, l=10, r=10))
+    st.plotly_chart(fig, use_container_width=True)
+    
     st.divider()
     
     # ---- Visualization View 3: Catalog Revenue Matrix -----------------------
