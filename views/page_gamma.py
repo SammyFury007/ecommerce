@@ -1,9 +1,3 @@
-"""
-Module Gamma Page — Product Purchase Analytics Module
-Addresses Objective 3 (top products), Visualization View 2 (Purchase
-Ingestion Timeline), and Visualization View 3 (Catalog Revenue Matrix).
-"""
-
 import streamlit as st
 import plotly.express as px
 
