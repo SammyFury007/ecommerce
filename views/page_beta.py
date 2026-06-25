@@ -1,9 +1,3 @@
-"""
-Module Beta Page — RFM Segmentation Core
-Addresses Objective 2 (segment by frequency/value) and Visualization View 1
-(Customer Segment Scatter Diagram).
-"""
-
 import streamlit as st
 import plotly.express as px
 
