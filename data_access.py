@@ -1,12 +1,3 @@
-"""
-Data access layer for the Streamlit dashboard.
-
-Wraps Module Alpha/Beta/Gamma/Delta functions with st.cache_data so the
-dashboard doesn't re-run SQL/pandas on every widget interaction. Also handles
-first-run bootstrapping: if ecommerce.db doesn't exist yet (e.g. fresh clone
-on Streamlit Cloud), it builds it from the raw Excel automatically.
-"""
-
 import sqlite3
 from pathlib import Path
 
@@ -21,7 +12,6 @@ RAW_DATA_PATH = BASE_DIR / "data" / "Online_Retail.xlsx"
 
 
 def ensure_database_exists() -> None:
-    """Build the SQLite database from raw data if it doesn't exist yet."""
     if not DB_PATH.exists():
         if not RAW_DATA_PATH.exists():
             st.error(
