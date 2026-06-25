@@ -131,5 +131,4 @@ st.divider()
         "Use the sidebar to dive into each module: **Alpha** (data quality), "
         "**Beta** (RFM segmentation), **Gamma** (product analytics), and "
         "**Delta** (regional revenue).",
-        icon="👈",
     )
