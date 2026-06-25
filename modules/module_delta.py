@@ -1,19 +1,3 @@
-"""
-MODULE DELTA — Regional Revenue Mapping Subsystem
-====================================================
-Tracks customer orders by country to monitor geographic growth.
-
-Like Module Gamma, this module is query-driven rather than table-driven:
-it reads directly from the `transactions` table built by Module Alpha and
-exposes parameterized functions the dashboard calls on demand.
-
-Functions:
-  - revenue_by_country(conn)               -> full country-level rollup
-  - top_countries(conn, n)                  -> top-N countries by revenue
-  - country_monthly_trend(conn, country)    -> monthly trend for one country
-  - country_customer_counts(conn)           -> unique customers per country
-"""
-
 import sqlite3
 import pandas as pd
 
