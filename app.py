@@ -1,16 +1,3 @@
-"""
-E-COMMERCE CUSTOMER BEHAVIOR ANALYSIS — Streamlit Dashboard
-==============================================================
-Main entry point. Run with:
-    streamlit run app.py
-
-Structure:
-  - Admin-only login gate (auth.py, backed by st.secrets)
-  - Sidebar navigation across the four project modules:
-        Overview | Module Alpha | Module Beta | Module Gamma | Module Delta
-  - Each module's view lives in pages/<module>.py and is dispatched from here
-"""
-
 import streamlit as st
 
 from auth import require_login, logout_button
