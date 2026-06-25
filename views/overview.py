@@ -97,7 +97,7 @@ def render() -> None:
         hover_data={"CustomerID": True, "Frequency": True, "RFM_Score": True},
         labels={"Recency": "Recency (days since last purchase)", "Monetary": "Monetary value (£)"},
         log_y=True,
-
+    )
     st.divider()
     
     # ---- Visualization View 2: Purchase Ingestion Timeline -----------------
@@ -111,7 +111,7 @@ def render() -> None:
         x="InvoiceDate",
         y="Revenue",
         labels={"InvoiceDate": "Date", "Revenue": "Revenue (£)"},
-    
+    )
     st.divider()
     
     # ---- Visualization View 3: Catalog Revenue Matrix -----------------------
