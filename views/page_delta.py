@@ -1,9 +1,3 @@
-"""
-Module Delta Page — Regional Revenue Mapping Subsystem
-Addresses Objective 4 (geographic growth / retention insight) via
-country-level revenue rollups and trend drill-downs.
-"""
-
 import streamlit as st
 import plotly.express as px
 
