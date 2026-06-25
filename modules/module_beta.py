@@ -1,37 +1,3 @@
-"""
-MODULE BETA — RFM Segmentation Core
-=====================================
-Measures customer value boundaries using Recency, Frequency, and Monetary metrics.
-
-RFM Definitions:
-  - Recency (R)   : Days since the customer's most recent purchase, measured
-                     against a fixed "snapshot date" (one day after the dataset's
-                     last invoice date, so recency is never zero/negative).
-  - Frequency (F)  : Number of distinct invoices (orders) placed by the customer.
-  - Monetary (M)   : Total amount spent by the customer (sum of TotalPrice).
-
-Scoring:
-  Each of R, F, M is split into quintiles (1-5) using pandas.qcut:
-    - Recency is scored in REVERSE (lower days-since-purchase = better = score 5)
-    - Frequency and Monetary are scored DIRECTLY (higher = better = score 5)
-
-  RFM_Score = R_Score + F_Score + M_Score (range 3-15)
-  RFM_Segment = concatenation of the three individual digit scores, e.g. "555"
-
-Segment Labels (business-friendly buckets derived from the combined score):
-  - Champions          : RFM_Score >= 13
-  - Loyal Customers     : 10 <= RFM_Score < 13
-  - Potential Loyalist  : 8 <= RFM_Score < 10
-  - At Risk             : 6 <= RFM_Score < 8
-  - Hibernating/Lost    : RFM_Score < 6
-
-This module reads from the `transactions` table built by Module Alpha and writes
-a new `rfm_segments` table back into the same SQLite database, keyed by CustomerID.
-
-Run directly to (re)build the RFM table:
-    python modules/module_beta.py
-"""
-
 import sqlite3
 from pathlib import Path
 import pandas as pd
