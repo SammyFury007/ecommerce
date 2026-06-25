@@ -124,6 +124,9 @@ def render() -> None:
         labels={"Recency": "Recency (days since last purchase)", "Monetary": "Monetary value (£)"},
         log_y=True,
     )
+    fig.update_layout(height=500, legend_title_text="Segment")
+    st.plotly_chart(fig, use_container_width=True)
+    
     st.divider()
     
     # ---- Visualization View 2: Purchase Ingestion Timeline -----------------
