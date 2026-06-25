@@ -1,22 +1,3 @@
-"""
-Admin authentication gate.
-
-Credentials are read from Streamlit secrets (st.secrets), never hardcoded
-in source. Locally this comes from .streamlit/secrets.toml (gitignored).
-On Streamlit Community Cloud this comes from the app's "Secrets" settings panel.
-
-Expected secrets.toml structure:
-
-    [admin]
-    username = "admin"
-    password = "your-password-here"
-
-Session state key `authenticated` tracks login status across reruns within
-a single browser session. There is no persistent session across browser
-restarts/tabs by design — closing the tab requires logging in again, which
-is the right behavior for an admin-only internal dashboard.
-"""
-
 import streamlit as st
 
 
@@ -65,11 +46,6 @@ def login_screen() -> None:
 
 
 def require_login() -> bool:
-    """
-    Call at the top of the main app. Returns True if the user is authenticated
-    (and the rest of the app should render). Returns False if it rendered the
-    login screen instead (caller should stop / return).
-    """
     if "authenticated" not in st.session_state:
         st.session_state.authenticated = False
 
