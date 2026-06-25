@@ -15,38 +15,6 @@ def render() -> None:
 
     df = load_transactions()
 
-    st.subheader("Data Cleaning Audit Trail")
-    st.markdown(
-        "The raw UCI Online Retail file is cleaned through the following steps "
-        "before it's loaded into SQLite:"
-    )
-
-    try:
-        raw_df = module_alpha.load_raw_data()
-        _, stats = module_alpha.clean_transactions(raw_df)
-
-        steps = [
-            ("Raw rows ingested", stats["raw_rows"]),
-            ("After removing missing Customer ID", stats["after_drop_missing_customer"]),
-            ("After removing missing Description", stats["after_drop_missing_description"]),
-            ("After removing cancelled invoices", stats["after_drop_cancellations"]),
-            ("After removing non-positive Qty/Price", stats["after_drop_nonpositive"]),
-            ("After removing exact duplicates", stats["after_drop_duplicates"]),
-        ]
-
-        cols = st.columns(len(steps))
-        for col, (label, value) in zip(cols, steps):
-            col.metric(label, f"{value:,}")
-
-        st.success(
-            f"✅ Final clean dataset: **{stats['final_rows']:,} rows** "
-            f"({stats['pct_removed']}% removed during cleaning)"
-        )
-    except Exception as e:
-        st.warning(f"Could not recompute live audit trail: {e}")
-
-    st.divider()
-
     st.subheader("Clean Transaction Table")
     st.caption("Explore the standardized transaction log used by all downstream modules.")
 
