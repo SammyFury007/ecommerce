@@ -19,7 +19,13 @@ from data_access import (
     )
 from modules import module_alpha
 
-
+SEGMENT_COLORS = {
+    "Champions": "#22C55E",
+    "Loyal Customers": "#3B82F6",
+    "Potential Loyalist": "#A78BFA",
+    "At Risk": "#F59E0B",
+    "Hibernating / Lost": "#EF4444",
+}
 
 def render() -> None:
     st.title("🏠 Overview")
