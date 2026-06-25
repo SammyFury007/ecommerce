@@ -93,35 +93,35 @@ def render() -> None:
         labels={"Recency": "Recency (days since last purchase)", "Monetary": "Monetary value (£)"},
         log_y=True,
 
-st.divider()
-
-    # ---- Visualization View 2: Purchase Ingestion Timeline -----------------
-    st.subheader("Purchase Ingestion Timeline")
-    freq_label = st.radio("Granularity", ["Daily", "Weekly", "Monthly"], horizontal=True, index=2)
-    freq_map = {"Daily": "D", "Weekly": "W", "Monthly": "M"}
-    timeline = load_revenue_timeline(freq_map[freq_label])
-
-    fig = px.area(
-        timeline,
-        x="InvoiceDate",
-        y="Revenue",
-        labels={"InvoiceDate": "Date", "Revenue": "Revenue (£)"},
-
-st.divider()
-
-    # ---- Visualization View 3: Catalog Revenue Matrix -----------------------
-    st.subheader("Catalog Revenue Matrix")
-    st.caption("Full inventory ranked by total contribution margin (revenue)")
-
-    summary = load_product_summary()
-    search = st.text_input("Search product catalog", placeholder="e.g. LANTERN, MUG, HEART...")
-    if search:
-        summary_view = summary[summary["Description"].str.contains(search.upper(), na=False)]
-    else:
-        summary_view = summary
-
-    st.caption(f"{len(summary_view):,} products")
-    st.dataframe(summary_view, use_container_width=True, height=350)
+    st.divider()
+    
+        # ---- Visualization View 2: Purchase Ingestion Timeline -----------------
+        st.subheader("Purchase Ingestion Timeline")
+        freq_label = st.radio("Granularity", ["Daily", "Weekly", "Monthly"], horizontal=True, index=2)
+        freq_map = {"Daily": "D", "Weekly": "W", "Monthly": "M"}
+        timeline = load_revenue_timeline(freq_map[freq_label])
+    
+        fig = px.area(
+            timeline,
+            x="InvoiceDate",
+            y="Revenue",
+            labels={"InvoiceDate": "Date", "Revenue": "Revenue (£)"},
+    
+    st.divider()
+    
+        # ---- Visualization View 3: Catalog Revenue Matrix -----------------------
+        st.subheader("Catalog Revenue Matrix")
+        st.caption("Full inventory ranked by total contribution margin (revenue)")
+    
+        summary = load_product_summary()
+        search = st.text_input("Search product catalog", placeholder="e.g. LANTERN, MUG, HEART...")
+        if search:
+            summary_view = summary[summary["Description"].str.contains(search.upper(), na=False)]
+        else:
+            summary_view = summary
+    
+        st.caption(f"{len(summary_view):,} products")
+        st.dataframe(summary_view, use_container_width=True, height=350)
     )
     fig3.update_traces(texttemplate="£%{x:,.0f}", textposition="outside")
     fig3.update_layout(height=300, margin=dict(t=10, b=10, l=10, r=10), yaxis=dict(autorange="reversed"))
