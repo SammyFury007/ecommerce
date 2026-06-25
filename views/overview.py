@@ -83,22 +83,22 @@ def render() -> None:
     )
     rfm = load_rfm()
     
-        # ---- Segment KPI strip --------------------------------------------------
-        seg_counts = rfm["Segment_Label"].value_counts()
-        cols = st.columns(len(SEGMENT_COLORS))
-        for col, (segment, color) in zip(cols, SEGMENT_COLORS.items()):
-            count = seg_counts.get(segment, 0)
-            pct = 100 * count / len(rfm)
-            col.markdown(
-                f"""
-                <div style="border-left: 4px solid {color}; padding-left: 10px;">
-                    <div style="font-size: 0.8rem; color: #9CA3AF;">{segment}</div>
-                    <div style="font-size: 1.4rem; font-weight: 700;">{count}</div>
-                    <div style="font-size: 0.75rem; color: #9CA3AF;">{pct:.1f}%</div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
+    # ---- Segment KPI strip --------------------------------------------------
+    seg_counts = rfm["Segment_Label"].value_counts()
+    cols = st.columns(len(SEGMENT_COLORS))
+    for col, (segment, color) in zip(cols, SEGMENT_COLORS.items()):
+        count = seg_counts.get(segment, 0)
+        pct = 100 * count / len(rfm)
+        col.markdown(
+            f"""
+            <div style="border-left: 4px solid {color}; padding-left: 10px;">
+                <div style="font-size: 0.8rem; color: #9CA3AF;">{segment}</div>
+                <div style="font-size: 1.4rem; font-weight: 700;">{count}</div>
+                <div style="font-size: 0.75rem; color: #9CA3AF;">{pct:.1f}%</div>
+            </div>
+            """,
+         unsafe_allow_html=True,
+    )
 
     st.divider()
 
