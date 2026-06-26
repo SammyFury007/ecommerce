@@ -11,20 +11,11 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# ---------------------------------------------------------------------------
-# 1. Login gate — nothing below this renders until authenticated
-# ---------------------------------------------------------------------------
 if not require_login():
     st.stop()
 
-# ---------------------------------------------------------------------------
-# 2. Ensure the SQLite database exists (auto-build on first run / fresh deploy)
-# ---------------------------------------------------------------------------
 ensure_database_exists()
 
-# ---------------------------------------------------------------------------
-# 3. Sidebar navigation
-# ---------------------------------------------------------------------------
 st.sidebar.title("📊 Analytics Dashboard")
 st.sidebar.caption(f"Signed in as **{st.session_state.get('username', 'admin')}**")
 st.sidebar.divider()
@@ -55,9 +46,6 @@ with st.sidebar.expander("⚙️ Data management"):
 
 logout_button()
 
-# ---------------------------------------------------------------------------
-# 4. Dispatch to the selected module page
-# ---------------------------------------------------------------------------
 route = PAGES[selection]
 
 if route == "overview":
