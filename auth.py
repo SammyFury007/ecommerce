@@ -2,7 +2,7 @@ import streamlit as st
 
 
 def check_login(username: str, password: str) -> bool:
-    """Validate credentials against st.secrets. Returns True if they match."""
+    
     try:
         valid_username = st.secrets["admin"]["username"]
         valid_password = st.secrets["admin"]["password"]
@@ -17,7 +17,7 @@ def check_login(username: str, password: str) -> bool:
 
 
 def login_screen() -> None:
-    """Render the login form. Sets st.session_state.authenticated on success."""
+    
     st.markdown(
         """
         <div style="text-align:center; margin-top: 4rem;">
@@ -57,7 +57,7 @@ def require_login() -> bool:
 
 
 def logout_button() -> None:
-    """Render a logout button, typically placed in the sidebar."""
+    
     if st.sidebar.button("🚪 Log out", use_container_width=True):
         st.session_state.authenticated = False
         st.session_state.pop("username", None)
